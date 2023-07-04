@@ -1,0 +1,23 @@
+openapi: 3.0.0
+info:
+  title: Entertaiment App
+  description: Entertaiment App
+  version: 0.1.9
+paths:
+  /home:
+    get:
+      parameters:
+        - name: name
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successfully fetched
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
