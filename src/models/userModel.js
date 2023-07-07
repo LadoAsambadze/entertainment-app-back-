@@ -1,6 +1,5 @@
 import { Schema, model } from "mongoose";
 
-
 const user = new Schema({
   email: {
     type: Schema.Types.String,
@@ -8,6 +7,10 @@ const user = new Schema({
     required: true,
   },
   password: {
+    type: Schema.Types.String,
+    required: true,
+  },
+  avatar: {
     type: Schema.Types.String,
     required: true,
   },
