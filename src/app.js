@@ -19,7 +19,6 @@ connect();
 app.use("/home", getImage);
 app.use("/profile", profile);
 
-
 app.use("/bookmark/:title", tooggleBooked);
 app.use("/images", express.static("public/storage/thumbnails"));
 app.use("/avatar", express.static("public/storage/regimage"));
@@ -28,4 +27,4 @@ app.use("/", userRoutes);
 
 app.use("/", ...swaggerMiddleware());
 
-app.listen(3001);
+app.listen(process.env.PORT || 3000);
