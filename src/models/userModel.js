@@ -12,7 +12,6 @@ const user = new Schema({
   },
   avatar: {
     type: Schema.Types.String,
-    required: true,
   },
 });
 

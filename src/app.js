@@ -8,6 +8,7 @@ import swaggerMiddleware from "./middlewares/middlewares.js";
 import tooggleBooked from "./controllers/bookmark-controller.js";
 
 import userRoutes from "./routes/user.js";
+import { profile } from "./controllers/user-controller.js";
 
 const app = express();
 dotenv.config();
@@ -16,11 +17,14 @@ app.use(cors());
 connect();
 
 app.use("/home", getImage);
+app.use("/profile", profile);
+
+
 app.use("/bookmark/:title", tooggleBooked);
 app.use("/images", express.static("public/storage/thumbnails"));
+app.use("/avatar", express.static("public/storage/regimage"));
 
 app.use("/", userRoutes);
-
 
 app.use("/", ...swaggerMiddleware());
 

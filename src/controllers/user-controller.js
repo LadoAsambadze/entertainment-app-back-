@@ -16,11 +16,12 @@ export const login = async (req, res) => {
           const token = jwt.sign(
             {
               user: user.email,
+              avatar: user.avatar,
             },
             process.env.SECRET
           );
 
-          res.status(200).json({ message: "Successful Loged", token });
+          res.status(200).json({ message: "Successful Loged", user, token });
         } else {
           res.status(400).json({ message: "Incorrect password" });
         }
@@ -35,7 +36,7 @@ export const login = async (req, res) => {
 
 export const singup = async (req, res) => {
   const { email, password } = req.body;
-  const { file } = req.body;
+  const { file } = req;
 
   try {
     if (email === "" || password === "") {
@@ -60,5 +61,20 @@ export const singup = async (req, res) => {
     }
   } catch (error) {
     res.status(500).json({ message: "Login error", error });
+  }
+};
+
+export const profile = async (req, res) => {
+  const { authorization } = req.headers;
+
+  if (authorization) {
+    const token = authorization.trim().split(" ")[1];
+
+    jwt.verify(token, process.env.SECRET, {}, (error, useData) => {
+      if (error) throw error;
+      res.status(200).json(useData);
+    });
+  } else {
+    res.status(403).json("No token!");
   }
 };
