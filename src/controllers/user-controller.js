@@ -50,7 +50,7 @@ export const singup = async (req, res) => {
         const user = new userModel({
           email,
           password: hash,
-          avatar: file.originalname,
+          avatar: "/avatar/"+file.originalname,
         });
         const newUser = await user.save();
 
