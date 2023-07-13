@@ -50,9 +50,12 @@ export const singup = async (req, res) => {
         const user = new userModel({
           email,
           password: hash,
-          avatar: "/avatar/"+file.originalname,
+          avatar: "/avatar/" + file.originalname,
         });
+        console.log(user);
+        console.log("123")
         const newUser = await user.save();
+        console.log(newUser);
 
         res.status(200).json({ message: "Successful Sing up", newUser });
       } else {
